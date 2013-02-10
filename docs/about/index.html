@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>About | Blogix</title>
+        <link rel="stylesheet" href="../../public/main.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="../../public/style.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="../../public/solarized_dark.css" media="screen" type="text/css">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <script src="../../public/jquery-1.8.3.min.js"></script>
+        <script src="../../public/highlight.pack.js"></script>
+        <script>
+            var _FULL = 1;
+            var _MOBILE = 2;
+            var layout = {
+                layout:_FULL,
+                switchToMobile: function() {
+                    if (this.layout != _MOBILE) {
+                        this.layout = _MOBILE;
+                        this.createSelectForMenu();
+                        $("#nav").hide();
+                        $("#navigationSelect").show();
+                        $("#middle").removeClass("full-layout").addClass("mobile-layout");
+                        $("#navigation").removeClass("full-layout").addClass("mobile-layout");
+                    }
+                },
+                createSelectForMenu: function() {
+                    if ($("#navigationSelect select option").length == 0) {
+                        var select = $("#navigationSelect select");
+                        select.append($("<option></option>").text("Navigate..."));
+                        $("#nav li a").each(function () {
+                            var href=$(this).attr("href");
+                            var text=$(this).html();
+                            select.append($("<option></option>").attr("value", href).text(text));
+                        });
+                    }
+                    $("#navigationSelect select").change(function (){
+                        var href = $(this).val();
+                        if (href != null && href != "") {
+                            window.location = href;
+                        }
+                    });
+                },
+                switchToFull: function() {
+                    if (this.layout != _FULL) {
+                        this.layout = _FULL;
+                        $("#nav").show();
+                        $("#navigationSelect").hide();
+                        $("#navigation").removeClass("mobile-layout").addClass("full-layout");
+                        $("#middle").removeClass("mobile-layout").addClass("full-layout");
+                    }
+                }
+            };
+
+            function globalResize(){
+                var width = $(window).width(); 
+                if (width < 800) {
+                    layout.switchToMobile();
+                }
+                else {
+                    layout.switchToFull();
+                }
+            }
+
+            function highlightCodeBlocks() {
+                $("code.block").each(function (){
+                    var html = $(this).html();
+                    var className = $(this).attr("data-language");
+                    $(this).html("<pre><code class=\"" + className + "\">" + html + "</code></pre>");
+                    if (className != null && className != "") {
+                        hljs.highlightBlock($(this).find("pre code").get(0));
+                    }
+                });
+            }
+
+            $(function(){
+                $(window).resize(globalResize);
+                globalResize();
+
+                $("#search-panel a").click(function (){
+                    var q = encodeURI($("#search-panel input").val() + " site:blogix.info");
+                    window.location = "http://www.google.com/search?q=" + q;
+                    return false;
+                });
+
+                highlightCodeBlocks();
+            });
+
+        
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div id="header">
+                <h1>Blogix</h1>
+                <h2>My new blog</h2>
+            </div><!-- #header-->
+            <div id="navigation">
+                <ul id="nav">
+                    <li><a href="../../">Home</a></li>
+                    <li><a href="../../docs/about/">About</a>
+                    <li><a href="../../download/">Download</a>
+                    <li><a href="../../docs/all/">Docs</a>
+                    <li><a href="https://github.com/ishubin/blogix">Fork us</a>
+                        <li><a href="../../rss.xml">RSS</a>
+                </ul>
+                <div id="navigationSelect" style="display:none;">
+                    Menu 
+                    <select name="menu">
+                    </select>
+                </div>
+                <div id="search-panel">
+                    <form action="http://www.google.com/search">
+                        <input name="q" value=""/>
+                        <a href="http://www.google.com?q=site:blogix.info">Search</a>
+                    </form>
+                </div>
+            </div>
+
+            <div id="middle" class="full-layout">
+                <div id="container">
+                    <div id="content">
+                        <div class="article">
+    <div class="header">
+        <h1>About</h1>
+    </div>
+    <div class="article-content">
+        <p><a href="/">Blogix</a> is a Java-based static website generator. It was inspired by <a href="http://www.playframework.org/">Play framework</a> and <a href="http://octopress.org/">Octopress</a>. Blogix allows to create blogs or just simple project websites. Blogix comes out of box with <a href="http://en.wikipedia.org/wiki/Textile_%28markup_language%29">Textille</a> support, syntax highlighting with <a href="http://softwaremaniacs.org/soft/highlight/en/">Highlight.js</a>, tiles-based templates, <a href="http://freemarker.sourceforge.net/docs/">Freemarker</a> template processor and a simple text file-based database.</p><h2 id="GetStarted">Get Started</h2><p>Getting started with Blogix is easy. Just follow these steps:</p><ol><li><a href="/docs/install/">Install</a> <em>Download blogix and install it on your local machine</em></li><li><a href="/docs/init-your-blog/">Init your blog</a> <em>Setup your website based on Blogix templates</em></li><li><a href="/docs/running-webserver/">See how your blog looks</a> <em>Running blogix webserver localy</em></li><li><a href="/docs/publish-blog/">Publish it</a> <em>Put your blog on github using <a href="http://pages.github.com/">GitHub Pages</a> or any other hosting</em></li></ol><h2 id="Sources">Sources</h2><p>All sources are available under Apache License, Version 2.0. Fork us on <a href="https://github.com/ishubin/blogix">GitHub</a></p><h2 id="License">License</h2><p>Blogix is free and distributed under Apache License, Version 2.0. See <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Full License Text</a> </p>
+
+    </div>
+</div>
+
+                    </div><!-- #content-->
+                </div><!-- #container-->
+
+            </div><!-- #middle-->
+
+            <div id="footer">
+                <div id="footer-sign">
+                    Copyright &copy; 2013 - Ivan Shubin, Powered by <a href="http://blogix.info">Blogix</a>
+                </div> 
+            </div><!-- #footer -->
+
+        </div><!-- #wrapper -->
+    </body>
+</html>

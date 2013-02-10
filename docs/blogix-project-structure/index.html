@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Blogix project structure | Blogix</title>
+        <link rel="stylesheet" href="../../public/main.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="../../public/style.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="../../public/solarized_dark.css" media="screen" type="text/css">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <script src="../../public/jquery-1.8.3.min.js"></script>
+        <script src="../../public/highlight.pack.js"></script>
+        <script>
+            var _FULL = 1;
+            var _MOBILE = 2;
+            var layout = {
+                layout:_FULL,
+                switchToMobile: function() {
+                    if (this.layout != _MOBILE) {
+                        this.layout = _MOBILE;
+                        this.createSelectForMenu();
+                        $("#nav").hide();
+                        $("#navigationSelect").show();
+                        $("#middle").removeClass("full-layout").addClass("mobile-layout");
+                        $("#navigation").removeClass("full-layout").addClass("mobile-layout");
+                    }
+                },
+                createSelectForMenu: function() {
+                    if ($("#navigationSelect select option").length == 0) {
+                        var select = $("#navigationSelect select");
+                        select.append($("<option></option>").text("Navigate..."));
+                        $("#nav li a").each(function () {
+                            var href=$(this).attr("href");
+                            var text=$(this).html();
+                            select.append($("<option></option>").attr("value", href).text(text));
+                        });
+                    }
+                    $("#navigationSelect select").change(function (){
+                        var href = $(this).val();
+                        if (href != null && href != "") {
+                            window.location = href;
+                        }
+                    });
+                },
+                switchToFull: function() {
+                    if (this.layout != _FULL) {
+                        this.layout = _FULL;
+                        $("#nav").show();
+                        $("#navigationSelect").hide();
+                        $("#navigation").removeClass("mobile-layout").addClass("full-layout");
+                        $("#middle").removeClass("mobile-layout").addClass("full-layout");
+                    }
+                }
+            };
+
+            function globalResize(){
+                var width = $(window).width(); 
+                if (width < 800) {
+                    layout.switchToMobile();
+                }
+                else {
+                    layout.switchToFull();
+                }
+            }
+
+            function highlightCodeBlocks() {
+                $("code.block").each(function (){
+                    var html = $(this).html();
+                    var className = $(this).attr("data-language");
+                    $(this).html("<pre><code class=\"" + className + "\">" + html + "</code></pre>");
+                    if (className != null && className != "") {
+                        hljs.highlightBlock($(this).find("pre code").get(0));
+                    }
+                });
+            }
+
+            $(function(){
+                $(window).resize(globalResize);
+                globalResize();
+
+                $("#search-panel a").click(function (){
+                    var q = encodeURI($("#search-panel input").val() + " site:blogix.info");
+                    window.location = "http://www.google.com/search?q=" + q;
+                    return false;
+                });
+
+                highlightCodeBlocks();
+            });
+
+        
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div id="header">
+                <h1>Blogix</h1>
+                <h2>My new blog</h2>
+            </div><!-- #header-->
+            <div id="navigation">
+                <ul id="nav">
+                    <li><a href="../../">Home</a></li>
+                    <li><a href="../../docs/about/">About</a>
+                    <li><a href="../../download/">Download</a>
+                    <li><a href="../../docs/all/">Docs</a>
+                    <li><a href="https://github.com/ishubin/blogix">Fork us</a>
+                        <li><a href="../../rss.xml">RSS</a>
+                </ul>
+                <div id="navigationSelect" style="display:none;">
+                    Menu 
+                    <select name="menu">
+                    </select>
+                </div>
+                <div id="search-panel">
+                    <form action="http://www.google.com/search">
+                        <input name="q" value=""/>
+                        <a href="http://www.google.com?q=site:blogix.info">Search</a>
+                    </form>
+                </div>
+            </div>
+
+            <div id="middle" class="full-layout">
+                <div id="container">
+                    <div id="content">
+                        <div class="article">
+    <div class="header">
+        <h1>Blogix project structure</h1>
+    </div>
+    <div class="article-content">
+        <p>Regular blogix project consists of the following folders</p><ul><li><code>conf/</code> - Contains configuration files for your project</li><li><code>lib/</code> - Here you can put java libraries which you would like to use in your blogix project</li><li><code>src/</code> - Here you can put java sources for blogix controllers, models and providers</li><li><code>markup-plugins</code> - Contains <code>.plugin</code> files as markup plugings</li><li><code>db/</code> - Contains directories like <code>posts</code>, <code>categories</code>, <code>docs</code> which contain all database entry files</li><li><code>public/</code> - Here you can put all your public resources like: javascritps, css, images, downloadable files etc. </li><li><code>view/</code> - Contains freemarker-based templates for rendering view</li></ul>
+
+    </div>
+</div>
+
+                    </div><!-- #content-->
+                </div><!-- #container-->
+
+            </div><!-- #middle-->
+
+            <div id="footer">
+                <div id="footer-sign">
+                    Copyright &copy; 2013 - Ivan Shubin, Powered by <a href="http://blogix.info">Blogix</a>
+                </div> 
+            </div><!-- #footer -->
+
+        </div><!-- #wrapper -->
+    </body>
+</html>

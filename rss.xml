@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>My Blog</title>
+    <link href="http://blogix.info/rss.xml" rel="self"/>
+    <link href="http://blogix.info"/>
+    <id>urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6</id>
+    <updated>2003-12-13T18:30:02Z</updated>
+        <entry>
+            <title>Blogix 1.0 is released!</title>
+            <link href="http://blogix.info/post/2012-12-23-blogix-1.0-is-released"/>
+            <link rel="alternate" type="text/html" href="http://blogix.info/post/2012-12-23-blogix-1.0-is-released"/>
+            <id>urn:uuid:2012-12-23-blogix-1.0-is-released</id>
+            <updated>2012-12-23T20:29:00Z</updated>
+            <summary>Blogix 1.0 is released!</summary>
+            <content type="html"><![CDATA[
+                <p><a href="http://blogix.info">Blogix</a> is a web framework designed by <a href="http://mindengine.net">Ivan Shubin</a> for building static blogs and websites. <br/>It comes out of box with following features:</p><ul><li>Java classes compilation</li><li>Textile extended markup for posts and documents</li><li>Syntax highlight for code samples</li><li>Responsive design</li><li>Freemarker-based templates processing</li><li>Tiles templates configuration</li><li>Simple text file-based database</li><li>RSS-feed (global and category-based)</li><li>Archive page</li><li>Built-in webserver </li></ul>
+                ]]>
+            </content>
+            <author>
+                <name>Sample AuthorName </name>
+            </author>
+        </entry>
+</feed>

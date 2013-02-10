@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Writting Posts | Blogix</title>
+        <link rel="stylesheet" href="../../public/main.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="../../public/style.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="../../public/solarized_dark.css" media="screen" type="text/css">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <script src="../../public/jquery-1.8.3.min.js"></script>
+        <script src="../../public/highlight.pack.js"></script>
+        <script>
+            var _FULL = 1;
+            var _MOBILE = 2;
+            var layout = {
+                layout:_FULL,
+                switchToMobile: function() {
+                    if (this.layout != _MOBILE) {
+                        this.layout = _MOBILE;
+                        this.createSelectForMenu();
+                        $("#nav").hide();
+                        $("#navigationSelect").show();
+                        $("#middle").removeClass("full-layout").addClass("mobile-layout");
+                        $("#navigation").removeClass("full-layout").addClass("mobile-layout");
+                    }
+                },
+                createSelectForMenu: function() {
+                    if ($("#navigationSelect select option").length == 0) {
+                        var select = $("#navigationSelect select");
+                        select.append($("<option></option>").text("Navigate..."));
+                        $("#nav li a").each(function () {
+                            var href=$(this).attr("href");
+                            var text=$(this).html();
+                            select.append($("<option></option>").attr("value", href).text(text));
+                        });
+                    }
+                    $("#navigationSelect select").change(function (){
+                        var href = $(this).val();
+                        if (href != null && href != "") {
+                            window.location = href;
+                        }
+                    });
+                },
+                switchToFull: function() {
+                    if (this.layout != _FULL) {
+                        this.layout = _FULL;
+                        $("#nav").show();
+                        $("#navigationSelect").hide();
+                        $("#navigation").removeClass("mobile-layout").addClass("full-layout");
+                        $("#middle").removeClass("mobile-layout").addClass("full-layout");
+                    }
+                }
+            };
+
+            function globalResize(){
+                var width = $(window).width(); 
+                if (width < 800) {
+                    layout.switchToMobile();
+                }
+                else {
+                    layout.switchToFull();
+                }
+            }
+
+            function highlightCodeBlocks() {
+                $("code.block").each(function (){
+                    var html = $(this).html();
+                    var className = $(this).attr("data-language");
+                    $(this).html("<pre><code class=\"" + className + "\">" + html + "</code></pre>");
+                    if (className != null && className != "") {
+                        hljs.highlightBlock($(this).find("pre code").get(0));
+                    }
+                });
+            }
+
+            $(function(){
+                $(window).resize(globalResize);
+                globalResize();
+
+                $("#search-panel a").click(function (){
+                    var q = encodeURI($("#search-panel input").val() + " site:blogix.info");
+                    window.location = "http://www.google.com/search?q=" + q;
+                    return false;
+                });
+
+                highlightCodeBlocks();
+            });
+
+        
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div id="header">
+                <h1>Blogix</h1>
+                <h2>My new blog</h2>
+            </div><!-- #header-->
+            <div id="navigation">
+                <ul id="nav">
+                    <li><a href="../../">Home</a></li>
+                    <li><a href="../../docs/about/">About</a>
+                    <li><a href="../../download/">Download</a>
+                    <li><a href="../../docs/all/">Docs</a>
+                    <li><a href="https://github.com/ishubin/blogix">Fork us</a>
+                        <li><a href="../../rss.xml">RSS</a>
+                </ul>
+                <div id="navigationSelect" style="display:none;">
+                    Menu 
+                    <select name="menu">
+                    </select>
+                </div>
+                <div id="search-panel">
+                    <form action="http://www.google.com/search">
+                        <input name="q" value=""/>
+                        <a href="http://www.google.com?q=site:blogix.info">Search</a>
+                    </form>
+                </div>
+            </div>
+
+            <div id="middle" class="full-layout">
+                <div id="container">
+                    <div id="content">
+                        <div class="article">
+    <div class="header">
+        <h1>Writting Posts</h1>
+    </div>
+    <div class="article-content">
+        <h2 id="Creatingnewpost">Creating new post</h2><p>In root folder of your project type the following command</p><code class="block" data-language="bash">blogix new post &quot;My first post&quot;
+</code><p>This will generate file with current date in name <code>2012-12-12-my-first-post.blogix</code>  in <code>db/posts</code> folder and will open it in a default editor.</p><code class="block">--------------------------------
+title
+    My first post
+--------------------------------
+date
+    2012-12-12 12:18
+--------------------------------
+allowComments
+    true
+--------------------------------
+categories
+    main   
+================================
+Hi, this is my first attempt to write post in blogix
+</code><p>The content of post should go after <code>=====================</code> part.</p><h2 id="Showingalistofpost">Showing a list of post</h2><p>With the following command you can see list of all post you have in your blog:</p><code class="block" data-language="bash">blogix show posts
+</code><h2 id="Removingposts">Removing posts</h2><p>If you want to remove som posts from your blog just use the following command:</p><code class="block" data-language="bash">
+blogix remove post post-id
+</code><p>Where the <code>post-id</code> is the id of the post that you want to remove. Actually it is the same as the name of the post file except the <code>.blogix</code> suffix.</p><h2 id="Showingalistofpost">Showing a list of post</h2><p>With the following command you can see list of all post you have in your blog:</p><code class="block" data-language="bash">blogix show posts
+</code><h2 id="Deletingposts">Deleting posts</h2><p>If you want to remove some posts from your blog just use the following command:</p><code class="block" data-language="bash">blogix delete post post-id
+</code><p>Of course is Linux or Mac you can just use system commands like this:</p><code class="block" data-language="bash">rm db/posts/2012-12-23-post-id.blogix
+</code><p>Where the <code>post-id</code> is the id of the post that you want to remove. Actually it is the same as the name of the post file except the <code>.blogix</code> suffix.</p><h2 id="Categories">Categories</h2><p>Each post can be placed in one or more categories. This allows you to subscribe to specific post using rss per category url.<br/>If you need to introduce another category just do this:</p><code class="block" data-language="bash">blogix new category &quot;Some stuff&quot;
+</code><p>This will create a file named <code>some-stuff.blogix</code> in <code>db/categories</code> folder. Now you can refer to this category in your posts like this</p><code class="block" data-language="bash">--------------------------------
+title
+    My first post in a separate category
+--------------------------------
+date
+    2012-12-12 12:18
+--------------------------------
+allowComments
+    true
+--------------------------------
+categories
+    some-stuff
+================================
+Hi, this is my first attempt to write post in blogix in a separate category
+</code><h2 id="Workingwithdocuments">Working with documents</h2><p>Documents are same as posts but they do not appear in post list and are mostly used in order to provide some information pages on your website like: info, about, documentation etc.<br/>Documents do not have categories. But the way you work with documents and syntax is completely the same as for posts</p><code class="block" data-language="bash"># Create a new document 
+blogix new doc &quot;How to roast chestnuts&quot;
+
+# Show a list of all documents
+blogix show docs
+
+# Delete a document
+blogix delete doc how-to-roast-chestnuts
+</code><p>Now you can explore <a href="/docs/markup/">how to use markup in your posts</a></p>
+
+    </div>
+</div>
+
+                    </div><!-- #content-->
+                </div><!-- #container-->
+
+            </div><!-- #middle-->
+
+            <div id="footer">
+                <div id="footer-sign">
+                    Copyright &copy; 2013 - Ivan Shubin, Powered by <a href="http://blogix.info">Blogix</a>
+                </div> 
+            </div><!-- #footer -->
+
+        </div><!-- #wrapper -->
+    </body>
+</html>

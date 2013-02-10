@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Markup | Blogix</title>
+        <link rel="stylesheet" href="../../public/main.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="../../public/style.css" media="screen" type="text/css">
+        <link rel="stylesheet" href="../../public/solarized_dark.css" media="screen" type="text/css">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        <script src="../../public/jquery-1.8.3.min.js"></script>
+        <script src="../../public/highlight.pack.js"></script>
+        <script>
+            var _FULL = 1;
+            var _MOBILE = 2;
+            var layout = {
+                layout:_FULL,
+                switchToMobile: function() {
+                    if (this.layout != _MOBILE) {
+                        this.layout = _MOBILE;
+                        this.createSelectForMenu();
+                        $("#nav").hide();
+                        $("#navigationSelect").show();
+                        $("#middle").removeClass("full-layout").addClass("mobile-layout");
+                        $("#navigation").removeClass("full-layout").addClass("mobile-layout");
+                    }
+                },
+                createSelectForMenu: function() {
+                    if ($("#navigationSelect select option").length == 0) {
+                        var select = $("#navigationSelect select");
+                        select.append($("<option></option>").text("Navigate..."));
+                        $("#nav li a").each(function () {
+                            var href=$(this).attr("href");
+                            var text=$(this).html();
+                            select.append($("<option></option>").attr("value", href).text(text));
+                        });
+                    }
+                    $("#navigationSelect select").change(function (){
+                        var href = $(this).val();
+                        if (href != null && href != "") {
+                            window.location = href;
+                        }
+                    });
+                },
+                switchToFull: function() {
+                    if (this.layout != _FULL) {
+                        this.layout = _FULL;
+                        $("#nav").show();
+                        $("#navigationSelect").hide();
+                        $("#navigation").removeClass("mobile-layout").addClass("full-layout");
+                        $("#middle").removeClass("mobile-layout").addClass("full-layout");
+                    }
+                }
+            };
+
+            function globalResize(){
+                var width = $(window).width(); 
+                if (width < 800) {
+                    layout.switchToMobile();
+                }
+                else {
+                    layout.switchToFull();
+                }
+            }
+
+            function highlightCodeBlocks() {
+                $("code.block").each(function (){
+                    var html = $(this).html();
+                    var className = $(this).attr("data-language");
+                    $(this).html("<pre><code class=\"" + className + "\">" + html + "</code></pre>");
+                    if (className != null && className != "") {
+                        hljs.highlightBlock($(this).find("pre code").get(0));
+                    }
+                });
+            }
+
+            $(function(){
+                $(window).resize(globalResize);
+                globalResize();
+
+                $("#search-panel a").click(function (){
+                    var q = encodeURI($("#search-panel input").val() + " site:blogix.info");
+                    window.location = "http://www.google.com/search?q=" + q;
+                    return false;
+                });
+
+                highlightCodeBlocks();
+            });
+
+        
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div id="header">
+                <h1>Blogix</h1>
+                <h2>My new blog</h2>
+            </div><!-- #header-->
+            <div id="navigation">
+                <ul id="nav">
+                    <li><a href="../../">Home</a></li>
+                    <li><a href="../../docs/about/">About</a>
+                    <li><a href="../../download/">Download</a>
+                    <li><a href="../../docs/all/">Docs</a>
+                    <li><a href="https://github.com/ishubin/blogix">Fork us</a>
+                        <li><a href="../../rss.xml">RSS</a>
+                </ul>
+                <div id="navigationSelect" style="display:none;">
+                    Menu 
+                    <select name="menu">
+                    </select>
+                </div>
+                <div id="search-panel">
+                    <form action="http://www.google.com/search">
+                        <input name="q" value=""/>
+                        <a href="http://www.google.com?q=site:blogix.info">Search</a>
+                    </form>
+                </div>
+            </div>
+
+            <div id="middle" class="full-layout">
+                <div id="container">
+                    <div id="content">
+                        <div class="article">
+    <div class="header">
+        <h1>Markup</h1>
+    </div>
+    <div class="article-content">
+        <p>The default markup engine for blogix is <a href="http://en.wikipedia.org/wiki/Textile_%28markup_language%29">Textile</a><br/>Also Blogix extends Textile markup with some additional tags.</p><h2 id="TheBasics">The Basics</h2><h3 id="Headers">Headers</h3><p>Headers should be specified using the syntaxt <code>h1. Header name</code>. <br/><b>Important notice</b>: you should have at least 1 white line before and after a header. Actually this way it is more readable.</p><code class="block">
+h1. This is a first-level header
+
+h2. This is a second-level header
+
+h3. This is a third-level header
+</code><h3 id="Highlighting">Highlighting</h3><code class="block">@This is a code line@
+*This is a strong line*
+**This is a bold line**
+__This is italic__
+_This is a hint_ 
+</code><p>Here is what the example above produces:</p><p><code>This is a code line</code><br/><strong>This is a strong line</strong><br/><b>This is a bold line</b><br/><i>This is italic</i><br/><em>This is a hint</em> </p><h3 id="Links">Links</h3><code class="block">&quot;This is the text of a link&quot;:www.google.com
+</code><p><a href="www.google.com">This is the text of a link</a></p><h3 id="Images">Images</h3><code class="block">!/public/image-sample-1.jpg!
+</code><p><img border="0" src="/public/image-sample-1.jpg"/></p><h3 id="OrderedLists">Ordered Lists</h3><code class="block"># Item1
+## Item1.1
+### Item 1.1.1
+## Item1.2
+# Item2
+</code><ol><li>Item1<ol><li>Item1.1<ol><li>Item 1.1.1</li></ol></li><li>Item1.2</li></ol></li><li>Item2</li></ol><h3 id="Bulletedlist">Bulleted list</h3><code class="block">* Item1
+** Item 1.1
+*** Item 1.1.1
+** Item 1.2
+* Item2
+</code><ul><li>Item1<ul><li>Item 1.1<ul><li>Item 1.1.1</li></ul></li><li>Item 1.2</li></ul></li><li>Item2</li></ul><h2 id="Codeblocks">Code blocks </h2><p>You can use code blocks in you post with syntax highlighting.<br/>For now there are several languages available: bash, c++, c, java, asm, ruby, python<br/>For adding code samples with highlighted syntax use the following markup. Notice that you can specify the language in first line </p><code class="block">$$ bash
+sudo find . -name &quot;*.txt&quot; | grep something &gt; file.txt
+$$
+</code><p>Will produce this </p><code class="block" data-language="bash">sudo find . -name &quot;*.txt&quot; | grep something &gt; file.txt
+</code><p>You can always skip syntax highlighting</p><code class="block">$$
+sudo find . -name &quot;*.txt&quot; | grep something &gt; file.txt
+$$
+</code><h2 id="PlainHTML">Plain HTML</h2><p>For injecting plain html without any markup use the following example</p><code class="block">@@
+&lt;div&gt;
+    This html code block will not be escaped
+&lt;/div&gt;
+@@
+</code><h2 id="VideoTags">Video Tags</h2><p>Video can be included to your blog using custom markup tags.<br/>Here is an example of embedded youtube video.</p><code class="block">{@ video
+    type: youtube
+    source: http://www.youtube.com/embed/yVpbFMhOAwE
+    align: center
+    width: 560
+    height: 315
+}
+</code>
+
+
+<div align="center">
+
+    <div class="video-wrapper">
+        <div class="video-container">
+                    <iframe width="560" height="315" src="http://www.youtube.com/embed/yVpbFMhOAwE" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+<p>The <code>type</code> and <code>source</code> fields are mandatory and all other fields are optional so you can use it even like this:</p><code class="block">{@ video
+    type: youtube
+    source: http://www.youtube.com/embed/yVpbFMhOAwE
+}
+</code><h2 id="Custommarkuptags">Custom markup tags</h2><p>Blogix also has a support for writting custom markup tags (it is also call textile plugins). All custom tags are located in <code>markup-plugins</code> folder where each <code>.plugin</code> file represents a markup tag<br/>In a that file you can writte freemarker template in which you can use all variables that a defined within custom tag.<br/>Here is a small example of a tag that renders an image with a caption and a tooltip. Lets make a tag that will use 3 variables: <code>url</code>, <code>name</code>, <code>hint</code><br/>So first we need to do is create a file <code>markup-plugins/image.plugin</code> with the following content:</p><code class="block" data-language="html">&lt;h4&gt;${name}&lt;/h4&gt;
+&lt;image src=&quot;${url}&quot; tooltip=&quot;${hint}&quot;/&gt;
+</code><p>Now you can invoke this plugin in your textile document like this:</p><code class="block">{@ image
+    name: Some nice picture
+    url: http://example.com/exampleImage.png
+    tooltip: Just a sample text
+}
+</code><p>And here is what the resulting html would look like</p><code class="block" data-language="html">&lt;h4&gt;Some nice picture&lt;/h4&gt;
+&lt;image src=&quot;http://example.com/exampleImage.png&quot; tooltip=&quot;Just a sample text&quot;/&gt;
+</code>
+
+    </div>
+</div>
+
+                    </div><!-- #content-->
+                </div><!-- #container-->
+
+            </div><!-- #middle-->
+
+            <div id="footer">
+                <div id="footer-sign">
+                    Copyright &copy; 2013 - Ivan Shubin, Powered by <a href="http://blogix.info">Blogix</a>
+                </div> 
+            </div><!-- #footer -->
+
+        </div><!-- #wrapper -->
+    </body>
+</html>

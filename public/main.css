@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+	font-family:Helvetica, Arial, Tahoma, Verdana, sans-serif;
+    width:%100;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+	margin: 0 0 18px
+}
+img {
+	border: none;
+}
+input {
+	vertical-align: middle;
+}
+#wrapper {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+
+/* Header
+-----------------------------------------------------------------------------*/
+#header {
+	height: 150px;
+}
+
+/* Navigation
+-------------------------------------------------------------------------------*/
+#navigation {
+    position:relative;
+    margin:0;
+    padding-top: 0.1em ;
+    padding-bottom: 0.1em; 
+    background: #afa;
+    overflow:auto;
+}
+#navigation.mobile-layout  {
+    height:80px;
+}
+#navigationSelect {
+    margin:0.2em;
+    color: white;
+}
+#nav {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding:0;
+    margin-left:0.5em;
+}
+#nav li {
+    float: left;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#nav li a {
+    display: block;
+    margin:0;
+}
+
+#search-panel {
+    float:left;
+    display:block;
+    padding-left:0.5em;
+}
+.mobile-layout #search-panel {
+    position:relative;
+    right:none;
+    left:1px;
+}
+#search-panel input {
+    width:150px;
+    height:20px;
+    padding-top:0.4em;
+    padding-bottom:0.4em;
+    font-size:1em;
+}
+#search-panel a {
+    display:inline-block;
+    width: 50px;
+    height:20px;
+    text-decoration: none;
+    padding-top:0.3em;
+    padding-bottom:0.4em;
+    padding-left:1.0em;
+    padding-right:1.5em;
+    font-size:1.1em;
+    color: #fff;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Middle
+-----------------------------------------------------------------------------*/
+#middle {
+	width: 100%;
+	height: 1%;
+	position: relative;
+}
+#middle:after {
+	content: '.';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
+#container {
+	width: 100%;
+	overflow: hidden;
+}
+.full-layout #content {
+    padding-left:1.5em;
+    padding-top:1.0em;
+    padding-right:1.0em;
+}
+
+.full-layout #container {
+	float: left;
+}
+
+/* Sidebar Right
+-----------------------------------------------------------------------------*/
+#sideRight {
+	margin-right: -3px;
+	width: 250px;
+    padding:1.0em;
+	position: relative;
+}
+.full-layout #sideRight {
+	float: left;
+	margin-left: -300px;
+}
+/* Footer
+--------------------------------------------------*/
+#footer {
+    margin-bottom:1.0em;
+}
+
+
+/* Video 
+--------------------------------------------------*/
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe,  
+.video-container object,  
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-wrapper {
+    width: 600px;
+    max-width: 100%;
+}

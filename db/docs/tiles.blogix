@@ -31,4 +31,4 @@ archive: @main
     side: archive-navigation.ftl.html
 $$
 
-This configuration defines 3 views: main, home, archive. The main view is used as a base for other views. This is very usefull feature as you can extend your views from others. In this case "home" view will inherit all fields from "main" view (header, content, side) and will redefine the content field. The parent view is specified with *@* symbol
+This configuration defines 3 views: main, home, archive. The main view is used as a base for other views. This is very usefull feature as you can extend your views from others. In this case "home" view will inherit all fields from "main" view (header, content, side) and will redefine the content field. The parent view is specified with "_@_"  symbol

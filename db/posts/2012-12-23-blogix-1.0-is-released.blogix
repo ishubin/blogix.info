@@ -22,10 +22,7 @@ It comes out of box with following features:
 * Simple text file-based database
 * RSS-feed (global and category-based)
 * Archive page
-* Templates for different types of websites:
 * Built-in webserver 
-** Blog
-** Developers Project
-** Music web-page
+
 
 

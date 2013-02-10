@@ -29,7 +29,7 @@ h2. Writting Posts
 h2. Advanced stuff!
 
 # "Blogix project structure":/docs/blogix-project-structure/
-# "Routes":/docs/routes/ _Set up your own url structure for blog_
+# "Routes":/docs/routes/ _Set up your own url structure_
 # "Java controllers":/docs/controllers/ _Extend your website_
 # "Tiles configuration":/docs/tiles/ _Configure your view templates in a hierarchy_
 # "Custom properties":/docs/custom-properties/ _Configure custom properties and use them later in your templates_

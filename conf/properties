@@ -14,7 +14,7 @@ blogix.title.home = Home
 
 # Used in header in main.ftl.html
 custom.headerH1 = Blogix
-custom.headerH2 = My new blog
+custom.headerH2 = Blogging framework for geeks
 
 # Will be used in google search
 custom.googleSite = blogix.info
@@ -22,5 +22,5 @@ custom.googleSite = blogix.info
 custom.productionSite = blogix.info
 
 custom.authorName = Sample AuthorName 
-custom.rssTitle = My Blog
+custom.rssTitle = Blogging framework for geeks
 

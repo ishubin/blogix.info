@@ -1,0 +1,36 @@
+--------------------------------
+title
+   Routes Configuration
+--------------------------------
+date
+   2013-01-28 16:05
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+Everything in blogix project is configured through @routes@ file. In this file you can specify the url structure of your website, define the view, controller and url providers.
+This is how the regular routes file look like:
+
+$$
+# Url                               Controller                                      View                        Provider
+#######################################################################################################################
+
+/                                   Blogix.homeFirstPage                            browse                         
+
+/page-{page}/                       Blogix.homePage(page)                           browse                      BlogixProvider.allHomePages
+
+/post/{postId}/                     Blogix.post(postId)                             post                        BlogixProvider.allPosts   
+/post/{postId}/files/{fileName}     Blogix.fileForPost(postId, fileName)            -                           BlogixProvider.allFilesForPosts  
+
+/categories/                        Blogix.categories                               categories
+$$
+
+Every line in a routes file represent a resource whith the following data:
+
+* *Url* - Parametrized pattern for request mappings.
+* *Controller* - A path to a static Java method which provides a model for this resource. In case if resource is parametrized you should specify all parameters from request mappings in the method arguments.
+* *View* - Name of a view which defines either a tile or a freemarker file. Tiles are configerd in @conf/tiles@ file.
+* *Provider* - A path to a static Java method which provides an array of request parameters. This is used only when exporting all resources to static files.

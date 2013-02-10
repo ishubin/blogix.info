@@ -1,0 +1,31 @@
+
+main: main.ftl.html
+    header:         header.ftl.html        
+    content:   
+    footer:         footer.ftl.html
+    navigation:     navigation.ftl.html
+    sideBar:        sideBar.ftl.html 
+
+
+browse: @main
+    content:        browse.ftl.html
+
+
+doc: @main
+    content:        doc.ftl.html
+
+post:   @main
+    content:        post.ftl.html
+
+categories: @main
+    content:         categories.ftl.html
+
+archive:    @main
+    content:        archive.ftl.html
+
+
+rss:    rss.ftl.xml
+
+
+download: @main
+    content:        download.ftl.html

@@ -1,0 +1,25 @@
+<div class="article">
+    <div class="header">
+        <span class="date">${post.date?date}</span>
+        <h1>${post.title?html}</h1>
+    </div>
+    <div class="article-content">
+        ${markup.apply(post.content)}
+
+    </div>
+    <div class="tag-list">
+        <#if post.categories??>
+            <span>Posted in</span>
+            <#list post.categories as category>
+                <#if allCategories[category]??>
+                    <a href="${blogix.wayToRoot}/category/${allCategories[category].id}/">${allCategories[category].name?html}</a><#if category_has_next>,</#if>
+                </#if>
+            </#list>
+        </#if>
+    </div>
+    <#if post.allowComments>
+        <div id="comments">
+            <h3>Comments</h3>
+        </div>
+    </#if>
+</div>

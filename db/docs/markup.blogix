@@ -1,0 +1,202 @@
+--------------------------------
+title
+   Markup
+--------------------------------
+date
+   2013-01-08 13:18
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+
+The default markup engine for blogix is "Textile":http://en.wikipedia.org/wiki/Textile_%28markup_language%29
+Also Blogix extends Textile markup with some additional tags.
+
+h2. The Basics
+
+h3. Headers
+
+Headers should be specified using the syntaxt @h1. Header name@. 
+**Important notice**: you should have at least 1 white line before and after a header. Actually this way it is more readable.
+
+$$ 
+
+h1. This is a first-level header
+
+h2. This is a second-level header
+
+h3. This is a third-level header
+
+$$
+
+
+h3. Highlighting
+
+$$
+@This is a code line@
+*This is a strong line*
+**This is a bold line**
+__This is italic__
+_This is a hint_ 
+$$
+
+Here is what the example above produces:
+
+@This is a code line@
+*This is a strong line*
+**This is a bold line**
+__This is italic__
+_This is a hint_ 
+
+
+h3. Links
+
+$$
+"This is the text of a link":www.google.com
+$$
+
+"This is the text of a link":www.google.com
+
+
+h3. Images
+
+$$
+!/public/image-sample-1.jpg!
+$$
+!/public/image-sample-1.jpg!
+
+
+h3. Ordered Lists
+
+$$ 
+# Item1
+## Item1.1
+### Item 1.1.1
+## Item1.2
+# Item2
+$$
+
+# Item1
+## Item1.1
+### Item 1.1.1
+## Item1.2
+# Item2
+
+
+h3. Bulleted list
+$$
+* Item1
+** Item 1.1
+*** Item 1.1.1
+** Item 1.2
+* Item2
+$$
+
+* Item1
+** Item 1.1
+*** Item 1.1.1
+** Item 1.2
+* Item2
+
+h2. Code blocks 
+
+You can use code blocks in you post with syntax highlighting.
+For now there are several languages available: bash, c++, c, java, asm, ruby, python
+For adding code samples with highlighted syntax use the following markup. Notice that you can specify the language in first line 
+$$
+ $$ bash
+ sudo find . -name "*.txt" | grep something > file.txt
+ $$
+$$
+
+Will produce this 
+$$ bash
+sudo find . -name "*.txt" | grep something > file.txt
+$$
+
+You can always skip syntax highlighting
+
+$$
+ $$
+ sudo find . -name "*.txt" | grep something > file.txt
+ $$
+$$
+
+
+h2. Plain HTML
+ 
+For injecting plain html without any markup use the following example
+
+$$
+@@
+<div>
+    This html code block will not be escaped
+</div>
+@@
+$$
+
+
+h2. Video Tags
+
+Video can be included to your blog using custom markup tags.
+Here is an example of embedded youtube video.
+
+$$
+{@ video
+    type: youtube
+    source: http://www.youtube.com/embed/yVpbFMhOAwE
+    align: center
+    width: 560
+    height: 315
+}
+$$
+
+{@ video
+    type: youtube
+    source: http://www.youtube.com/embed/yVpbFMhOAwE
+    align: center
+    width: 560
+    height: 315
+}
+
+The @type@ and @source@ fields are mandatory and all other fields are optional so you can use it even like this:
+
+$$
+{@ video
+    type: youtube
+    source: http://www.youtube.com/embed/yVpbFMhOAwE
+}
+$$
+
+h2. Custom markup tags
+
+Blogix also has a support for writting custom markup tags (it is also call textile plugins). All custom tags are located in @markup-plugins@ folder where each @.plugin@ file represents a markup tag
+In a that file you can writte freemarker template in which you can use all variables that a defined within custom tag.
+Here is a small example of a tag that renders an image with a caption and a tooltip. Lets make a tag that will use 3 variables: @url@, @name@, @hint@
+So first we need to do is create a file @markup-plugins/image.plugin@ with the following content:
+
+$$ html
+<h4>${name}</h4>
+<image src="${url}" tooltip="${hint}"/>
+$$
+
+Now you can invoke this plugin in your textile document like this:
+
+$$
+{@ image
+    name: Some nice picture
+    url: http://example.com/exampleImage.png
+    tooltip: Just a sample text
+}
+$$
+
+
+And here is what the resulting html would look like
+
+$$ html
+<h4>Some nice picture</h4>
+<image src="http://example.com/exampleImage.png" tooltip="Just a sample text"/>
+$$

@@ -1,0 +1,63 @@
+--------------------------------
+title
+   Writting first post and running a webserver 
+--------------------------------
+date
+   2012-12-31 12:18
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+{@ step-marker
+    label: Step 1
+    title: Writting first post
+}
+Now since you have configured everything you can write your first post.
+In root folder of your project type the following command
+
+$$ bash
+blogix new post "My first post"
+$$
+
+This will generate file with current date in name @2012-12-12-my-first-post.blogix@  in @db/posts@ folder and will open it in a default editor.
+
+$$ 
+ --------------------------------
+ title
+    My first post
+ --------------------------------
+ date
+    2012-12-12 12:18
+ --------------------------------
+ allowComments
+    true
+ --------------------------------
+ categories
+    main   
+ ================================
+$$
+
+The content of post should go after @=====================@ part.
+
+
+{@ step-marker
+    label: Step 2
+    title: Running a webserver locally
+}
+
+After you are done with writting your first post you can check how it looks in a browser.
+Run the following command in the root folder of your project
+
+$$ bash
+blogix run
+$$
+
+Type @http://localhost:8080@ in a browser and you should be able to see your website.
+Now you can publish your blog. For this you need to "export all pages to static files":/docs/publish-blog/
+
+
+
+

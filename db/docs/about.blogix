@@ -1,0 +1,26 @@
+--------------------------------------------------
+title
+    About
+==================================================
+"Blogix":/ is a Java-based static website generator. It was inspired by "Play framework":http://www.playframework.org/ and "Octopress":http://octopress.org/. Blogix allows to create blogs or just simple project websites. Blogix comes out of box with "Textille":http://en.wikipedia.org/wiki/Textile_%28markup_language%29 support, syntax highlighting with "Highlight.js":http://softwaremaniacs.org/soft/highlight/en/, tiles-based templates, "Freemarker":http://freemarker.sourceforge.net/docs/ template processor and a simple text file-based database.
+
+
+h2. Get Started
+
+Getting started with Blogix is easy. Just follow these steps:
+
+# "Install":/docs/install/ _Download blogix and install it on your local machine_
+# "Init your blog":/docs/init-your-blog/ _Setup your website based on Blogix templates_
+# "See how your blog looks":/docs/running-webserver/ _Running blogix webserver localy_
+# "Publish it":/docs/publish-blog/ _Put your blog on github using "GitHub Pages":http://pages.github.com/ or any other hosting_
+
+
+
+h2. Sources
+
+All sources are available under Apache License, Version 2.0. Fork us on "GitHub":https://github.com/ishubin/blogix
+
+
+h2. License
+
+Blogix is free and distributed under Apache License, Version 2.0. See "Full License Text":http://www.apache.org/licenses/LICENSE-2.0.html 

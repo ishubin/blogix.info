@@ -1,0 +1,33 @@
+--------------------------------
+title
+   Custom Properties
+--------------------------------
+date
+   2013-02-03 11:01
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+In case you want to use some custom properties in your templates you can define them in @conf/properties@ file with a @custom.@ prefix
+Here is an example of custom properties:
+
+$$ 
+custom.blogTitle = Nice Stuff!
+$$
+
+
+And now here is how you can use it in your templates
+
+$$ html
+<html>
+    <head>
+        <title>${blogTitle}</title>
+    </head>
+    <body>
+    ...
+    </body>
+</html>
+$$

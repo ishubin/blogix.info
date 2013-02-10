@@ -1,0 +1,35 @@
+--------------------------------
+title
+   Install Blogix
+--------------------------------
+date
+   2012-12-28 13:49
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+
+{@ step-marker
+    label: Step 1
+    title: Download Blogix binary
+}
+
+$$ bash 
+wget http://blogix.info/public/download/bin/blogix.zip
+$$
+
+
+{@ step-marker
+    label: Step 2
+    title: Install it
+}
+
+h3. Linux / Mac OS
+$$ bash
+sudo ./install.sh
+$$
+
+Thats it! Now try to "create your first blog":/docs/init-your-blog/

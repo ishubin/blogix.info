@@ -1,0 +1,29 @@
+--------------------------------
+title
+   Publish your blog
+--------------------------------
+date
+   2012-12-31 15:10
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+Once you have configured everything and finished all your articles you can export all pages of your website.
+This can be done just simply by this command in a root folder of your project:
+
+$$ bash
+blogix export
+$$
+
+It will go through all provided resources of your website and save them in *export* folder. It will also keep the same directory structure as it is defined in your routes.
+If you want to export it somewhere else you can specify the path to another folder as an additional argument:
+
+$$ bash 
+blogix export "../some-other-export-directory"
+$$
+
+That's it. Now you can publish your exported website to any web hosting. 
+For publishing your website to GitHub Pages read this article "Creating Project Pages manually in GitHub":https://help.github.com/articles/creating-project-pages-manually

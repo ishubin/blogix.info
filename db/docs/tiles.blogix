@@ -1,0 +1,34 @@
+--------------------------------
+title
+   Tiles Configuration
+--------------------------------
+date
+   2013-02-01 22:01
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+Tiles is great tool if you want to keep your view structured. The idea is that you can specify a basic structure of your website view in a single file. Then you can define different views and the which template should be used for which tile. All this is configured in one file @conf/tiles@.
+
+Here is a sample tiles configuration:
+
+$$ smalltalk 
+main: main.ftl.html
+    header: header.ftl.html
+    content:
+    side: side.ftl.html
+
+
+home: @main
+    content: home.ftl.html
+
+
+archive: @main
+    content: archive.ftl.html
+    side: archive-navigation.ftl.html
+$$
+
+This configuration defines 3 views: main, home, archive. The main view is used as a base for other views. This is very usefull feature as you can extend your views from others. In this case "home" view will inherit all fields from "main" view (header, content, side) and will redefine the content field. The parent view is specified with *@* symbol

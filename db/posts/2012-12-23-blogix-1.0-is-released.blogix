@@ -1,0 +1,31 @@
+--------------------------------
+title
+   Blogix 1.0 is released!
+--------------------------------
+date
+   2012-12-23 21:29
+--------------------------------
+allowComments
+   false 
+--------------------------------
+categories
+   blogix
+================================
+"Blogix":http://blogix.info is a web framework designed by "Ivan Shubin":http://mindengine.net for building static blogs and websites. 
+It comes out of box with following features:
+* Java classes compilation
+* Textile extended markup for posts and documents
+* Syntax highlight for code samples
+* Responsive design
+* Freemarker-based templates processing
+* Tiles templates configuration
+* Simple text file-based database
+* RSS-feed (global and category-based)
+* Archive page
+* Templates for different types of websites:
+* Built-in webserver 
+** Blog
+** Developers Project
+** Music web-page
+
+

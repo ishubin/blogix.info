@@ -1,0 +1,22 @@
+--------------------------------
+title
+   Blogix project structure
+--------------------------------
+date
+   2013-01-21 15:29
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+Regular blogix project consists of the following folders
+
+* @conf/@ - Contains configuration files for your project
+* @lib/@ - Here you can put java libraries which you would like to use in your blogix project
+* @src/@ - Here you can put java sources for blogix controllers, models and providers
+* @markup-plugins@ - Contains @.plugin@ files as markup plugings
+* @db/@ - Contains directories like @posts@, @categories@, @docs@ which contain all database entry files
+* @public/@ - Here you can put all your public resources like: javascritps, css, images, downloadable files etc. 
+* @view/@ - Contains freemarker-based templates for rendering view

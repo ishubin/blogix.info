@@ -1,0 +1,40 @@
+--------------------------------
+title
+   Controllers
+--------------------------------
+date
+   2013-02-01 21:37
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+
+The Blogix controller is just a static method of a Java class. The controller method can be parameterized and should return a @java.util.Map<String, Object>@ type.
+
+Here is a simple hello world controller which does not do anything other then putting a phrase "Hello World!" to a model
+
+$$ java
+public class MyController {
+
+    private static Map<String, Object> hello() {
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("phrase", "Hello World!");
+        return model;
+    }
+}
+$$
+
+Now in a template we can use this 
+
+$$ html
+<html>
+    <body>
+        ${phrase}
+    </body>
+</html>
+$$
+
+

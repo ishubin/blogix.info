@@ -1,0 +1,35 @@
+--------------------------------
+title
+   Documents
+--------------------------------
+date
+   2012-12-28 12:58
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+
+h2. Get Started
+
+# "Install Blogix":/docs/install/ _Download and install blogix on your local environment_
+# "Init your blog":/docs/init-your-blog/ _Create new website from blogix templates_
+# "See how your blog looks":/docs/running-webserver/ _Running blogix webserver localy_
+# "Publish it":/docs/publish-blog/ _Put your blog on github using "GitHub Pages":http://pages.github.com/ or any other hosting_
+
+
+h2. Writting Posts 
+
+# "Working with posts":/docs/working-with-posts/ _Working with posts and docs from command line_
+# "Markup":/docs/markup/ _Using Textile markup with extended blogix tags_
+
+
+h2. Advanced stuff!
+
+# "Blogix project structure":/docs/blogix-project-structure/
+# "Routes":/docs/routes/ _Set up your own url structure for blog_
+# "Java controllers":/docs/controllers/ _Extend your website_
+# "Tiles configuration":/docs/tiles/ _Configure your view templates in a hierarchy_
+# "Custom properties":/docs/custom-properties/ _Configure custom properties and use them later in your templates_

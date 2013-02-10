@@ -1,0 +1,140 @@
+--------------------------------
+title
+   Writting Posts
+--------------------------------
+date
+   2013-01-06 21:52
+--------------------------------
+allowComments
+   true
+--------------------------------
+categories
+   
+================================
+
+
+
+h2. Creating new post
+
+In root folder of your project type the following command
+
+$$ bash
+blogix new post "My first post"
+$$
+
+This will generate file with current date in name @2012-12-12-my-first-post.blogix@  in @db/posts@ folder and will open it in a default editor.
+
+$$ 
+ --------------------------------
+ title
+    My first post
+ --------------------------------
+ date
+    2012-12-12 12:18
+ --------------------------------
+ allowComments
+    true
+ --------------------------------
+ categories
+    main   
+ ================================
+ Hi, this is my first attempt to write post in blogix
+$$
+
+The content of post should go after @=====================@ part.
+
+
+h2. Showing a list of post
+
+With the following command you can see list of all post you have in your blog:
+
+$$ bash
+blogix show posts
+$$
+
+
+h2. Removing posts
+
+If you want to remove som posts from your blog just use the following command:
+
+$$ bash
+
+blogix remove post post-id
+
+$$
+
+Where the @post-id@ is the id of the post that you want to remove. Actually it is the same as the name of the post file except the @.blogix@ suffix.
+
+
+
+h2. Showing a list of post
+
+With the following command you can see list of all post you have in your blog:
+
+$$ bash
+blogix show posts
+$$
+
+
+h2. Deleting posts
+
+If you want to remove some posts from your blog just use the following command:
+
+$$ bash
+blogix delete post post-id
+$$
+
+Of course is Linux or Mac you can just use system commands like this:
+
+$$ bash
+rm db/posts/2012-12-23-post-id.blogix
+$$
+
+Where the @post-id@ is the id of the post that you want to remove. Actually it is the same as the name of the post file except the @.blogix@ suffix.
+
+
+h2. Categories
+
+Each post can be placed in one or more categories. This allows you to subscribe to specific post using rss per category url.
+If you need to introduce another category just do this:
+
+$$ bash
+blogix new category "Some stuff"
+$$
+
+This will create a file named @some-stuff.blogix@ in @db/categories@ folder. Now you can refer to this category in your posts like this
+
+$$ bash
+ --------------------------------
+ title
+    My first post in a separate category
+ --------------------------------
+ date
+    2012-12-12 12:18
+ --------------------------------
+ allowComments
+    true
+ --------------------------------
+ categories
+    some-stuff
+ ================================
+ Hi, this is my first attempt to write post in blogix in a separate category
+$$
+
+h2. Working with documents
+
+Documents are same as posts but they do not appear in post list and are mostly used in order to provide some information pages on your website like: info, about, documentation etc.
+Documents do not have categories. But the way you work with documents and syntax is completely the same as for posts
+
+$$ bash
+# Create a new document 
+blogix new doc "How to roast chestnuts"
+
+# Show a list of all documents
+blogix show docs
+
+# Delete a document
+blogix delete doc how-to-roast-chestnuts
+$$
+
+Now you can explore "how to use markup in your posts":/docs/markup/
